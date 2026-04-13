@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body p-4">
+          <h3 class="text-center mb-4">View Employee Details</h3>
+
+          @if (errorMessage) {
+            <div class="alert alert-danger">{{ errorMessage }}</div>
+            <button class="btn btn-primary mt-3" (click)="goBack()">Back to List</button>
+          }
+
+          @if (employee) {
+            @if (employee.employee_photo) {
+              <div class="text-center mb-3">
+                <img [src]="employee.employee_photo" alt="Employee Photo"
+                  class="rounded-circle" width="120" height="120">
+              </div>
+            }
+
+            <p><strong>Employee First Name:</strong> {{ employee.first_name }}</p>
+            <p><strong>Employee Last Name:</strong> {{ employee.last_name }}</p>
+            <p><strong>Employee Email:</strong> {{ employee.email }}</p>
+            <p><strong>Gender:</strong> {{ employee.gender }}</p>
+            <p><strong>Designation:</strong> {{ employee.designation }}</p>
+            <p><strong>Salary:</strong> {{ employee.salary | salary }}</p>
+            <p><strong>Date of Joining:</strong> {{ employee.date_of_joining }}</p>
+            <p><strong>Department:</strong> {{ employee.department }}</p>
+
+            <button class="btn btn-primary mt-3" (click)="goBack()">Back to List</button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

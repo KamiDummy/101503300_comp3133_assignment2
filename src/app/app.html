@@ -1,0 +1,10 @@
+<nav class="navbar navbar-dark bg-info">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/employees">Employee Management App</a>
+    @if (authService.isLoggedIn()) {
+      <button class="btn btn-light btn-sm" (click)="logout()">Logout</button>
+    }
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

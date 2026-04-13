@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Employees List</h2>
+
+  <div class="row mb-3 align-items-center">
+    <div class="col-md-2">
+      <button class="btn btn-success" routerLink="/employees/add">Add Employee</button>
+    </div>
+    <div class="col-md-10">
+      <div class="row g-2 justify-content-end">
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="searchType">
+            <option value="department">Department</option>
+            <option value="designation">Position</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <input type="text" class="form-control" [(ngModel)]="searchText"
+            placeholder="Search..." (keyup.enter)="search()">
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-info text-white" (click)="search()">Search</button>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-secondary" (click)="clearSearch()">Clear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-light">
+      <tr>
+        <th>Employee First Name</th>
+        <th>Employee Last Name</th>
+        <th>Employee Email Id</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees; track emp.id) {
+        <tr>
+          <td>{{ emp.first_name }}</td>
+          <td>{{ emp.last_name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>
+            <a class="btn btn-info btn-sm text-white me-1" [routerLink]="['/employees/edit', emp.id]">Update</a>
+            <button class="btn btn-danger btn-sm me-1" (click)="deleteEmployee(emp.id)">Delete</button>
+            <a class="btn btn-info btn-sm text-white" [routerLink]="['/employees/view', emp.id]">View</a>
+          </td>
+        </tr>
+      }
+
+      @if (employees.length === 0) {
+        <tr>
+          <td colspan="4" class="text-center">No employees found</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
